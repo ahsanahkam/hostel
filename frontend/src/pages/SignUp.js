@@ -1,12 +1,3 @@
-/**
- * SignUp Page (View Layer)
- * =========================
- * 
- * Pure View component for user registration
- * Business logic handled by useAuth hook (Controller)
- * Data access handled by api.js (Model)
- */
-
 import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import Toast from '../components/Toast';
@@ -23,10 +14,8 @@ function SignUp() {
     });
     const [toast, setToast] = useState({ show: false, message: '' });
     
-    // Controller layer - all business logic in custom hook
     const { loading, error, handleRegister } = useAuth();
     
-    // Toast notification helper
     const showToast = (message, type = 'success') => {
         setToast({ show: true, message });
         setTimeout(() => {
@@ -34,7 +23,6 @@ function SignUp() {
         }, 2000);
     };
     
-    // Update form data when user types
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -42,12 +30,11 @@ function SignUp() {
         });
     };
     
-    // Handle form submission
     const onSubmit = (e) => {
         e.preventDefault();
         handleRegister(formData, showToast);
     };
-    
+
     return (
         <div style={{ maxWidth: '400px', margin: '50px auto', padding: '20px', border: '1px solid #ccc' }}>
             <Toast show={toast.show} message={toast.message} />

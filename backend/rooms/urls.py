@@ -1,10 +1,3 @@
-"""
-Rooms App URLs
-=============
-
-Maps room URLs to views
-"""
-
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views

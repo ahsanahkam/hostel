@@ -1,11 +1,3 @@
-/**
- * useAuth Hook (Controller Layer)
- * ================================
- * 
- * Business logic for Authentication (SignIn and SignUp)
- * Handles: state management, login, registration, navigation
- */
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login, register } from '../services/api';
@@ -16,7 +8,6 @@ export const useAuth = () => {
     
     const navigate = useNavigate();
     
-    // Login logic
     const handleLogin = async (username, password, showToast) => {
         setError('');
         setLoading(true);
@@ -38,7 +29,6 @@ export const useAuth = () => {
         }
     };
     
-    // Registration logic
     const handleRegister = async (formData, showToast) => {
         setError('');
         setLoading(true);

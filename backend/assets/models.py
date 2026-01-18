@@ -1,17 +1,7 @@
-"""
-Assets App Models
-
-ORM:
-- Asset Model = Database table storing hostel assets (beds, tables, etc.)
-- DamageReport Model = Database table tracking damage incidents and repairs
-"""
-
 from django.db import models
 
+
 class Asset(models.Model):
-    """Asset Model - Represents physical items in the hostel"""
-    
-    # Asset type choices
     ASSET_TYPE_CHOICES = [
         ('Bed', 'Bed'),
         ('Table', 'Table'),
@@ -22,35 +12,16 @@ class Asset(models.Model):
         ('Other', 'Other'),
     ]
     
-    # Condition choices
     CONDITION_CHOICES = [
         ('Good', 'Good'),
         ('Damaged', 'Damaged'),
     ]
     
-    # Asset name - e.g., "Bed 101", "Study Table"
     name = models.CharField(max_length=200)
-    
-    # Type of asset - Bed, Table, etc.
-    asset_type = models.CharField(
-        max_length=50, 
-        choices=ASSET_TYPE_CHOICES
-    )
-    
-    # Total quantity of this asset
+    asset_type = models.CharField(max_length=50, choices=ASSET_TYPE_CHOICES)
     total_quantity = models.IntegerField(default=1)
-    
-    # Number of damaged items
     damaged_quantity = models.IntegerField(default=0)
-    
-    # Current condition of the asset
-    condition = models.CharField(
-        max_length=20, 
-        choices=CONDITION_CHOICES, 
-        default='Good'
-    )
-    
-    # Foreign Key to Room
+    condition = models.CharField(max_length=20, choices=CONDITION_CHOICES, default='Good')
     room = models.ForeignKey(
         'rooms.Room',
         on_delete=models.SET_NULL,
@@ -58,8 +29,6 @@ class Asset(models.Model):
         blank=True,
         related_name='assets'
     )
-    
-    # Auto-timestamp fields
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -69,13 +38,10 @@ class Asset(models.Model):
     class Meta:
         verbose_name = "Asset"
         verbose_name_plural = "Assets"
-        ordering = ['-created_at']  # Newest first
+        ordering = ['-created_at']
 
 
 class DamageReport(models.Model):
-    """Damage Report Model - Tracks damage incidents and repair status"""
-    
-    # Asset type choices (same as Asset model)
     ASSET_TYPE_CHOICES = [
         ('Bed', 'Bed'),
         ('Table', 'Table'),
@@ -86,7 +52,6 @@ class DamageReport(models.Model):
         ('Other', 'Other'),
     ]
     
-    # Repair status choices
     STATUS_CHOICES = [
         ('Not Fixed', 'Not Fixed'),
         ('Fixed', 'Fixed'),
@@ -98,21 +63,9 @@ class DamageReport(models.Model):
         on_delete=models.CASCADE,
         related_name='damage_reports'
     )
-    
-    # Type of damaged asset
     asset_type = models.CharField(max_length=50, choices=ASSET_TYPE_CHOICES)
-    
-    # Description of the damage
     description = models.TextField()
-    
-    # Current repair status
-    status = models.CharField(
-        max_length=20,
-        choices=STATUS_CHOICES,
-        default='Not Fixed'
-    )
-    
-    # Timestamps
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Not Fixed')
     reported_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -122,4 +75,4 @@ class DamageReport(models.Model):
     class Meta:
         verbose_name = "Damage Report"
         verbose_name_plural = "Damage Reports"
-        ordering = ['-reported_at']  # Newest first
+        ordering = ['-reported_at']

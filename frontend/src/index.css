@@ -1,11 +1,3 @@
-/**
- * Global Styles
- * =============
- * 
- * Base CSS styles applied to the entire application
- * Sets font family, box-sizing, and basic resets
- */
-
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -20,7 +12,6 @@ code {
         monospace;
 }
 
-/* Apply border-box to all elements for consistent sizing */
 * {
     box-sizing: border-box;
 }

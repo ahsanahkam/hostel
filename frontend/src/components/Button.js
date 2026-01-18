@@ -1,17 +1,3 @@
-/**
- * Button Component (Reusable View Layer)
- * ======================================
- * 
- * Reusable button component with consistent styling
- * Props:
- * - children: Button text or content
- * - onClick: Click handler function
- * - variant: Button style variant (primary, secondary, success, danger, warning)
- * - type: Button type (button, submit, reset)
- * - disabled: Whether button is disabled
- * - fullWidth: Whether button should take full width
- */
-
 import React from 'react';
 
 function Button({ 

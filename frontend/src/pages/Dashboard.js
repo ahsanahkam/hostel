@@ -1,23 +1,9 @@
-/**
- * Dashboard Page
- * ==============
- * 
- * What this page does:
- * 1. Shows system summary statistics
- * 2. Displays: total assets, damaged assets, total rooms, total users
- * 3. Shows navigation to other pages
- * 
- * API Used: GET /api/dashboard/summary/
- * Models Used: Asset, Room, User (counts from all tables)
- */
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getDashboardSummary, logout, getCurrentUser } from '../services/api';
 import Button from '../components/Button';
 
 function Dashboard() {
-    // State for dashboard data
     const [summary, setSummary] = useState({
         total_assets: 0,
         damaged_assets: 0,
@@ -30,7 +16,6 @@ function Dashboard() {
     
     const navigate = useNavigate();
     
-    // Fetch data when component loads
     useEffect(() => {
         fetchDashboardData();
         fetchCurrentUser();
@@ -42,7 +27,6 @@ function Dashboard() {
             setSummary(response.data);
         } catch (err) {
             console.error('Error fetching dashboard data:', err);
-            // If unauthorized, redirect to signin
             if (err.response?.status === 401 || err.response?.status === 403) {
                 navigate('/signin');
             }
@@ -88,7 +72,6 @@ function Dashboard() {
                 </div>
             </div>
             
-            {/* Navigation Links */}
             <div style={{ marginBottom: '30px', padding: '15px', backgroundColor: '#f8f9fa', borderRadius: '5px', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                 <Button variant="primary" onClick={() => navigate('/assets')}>
                     Manage Assets
@@ -109,7 +92,6 @@ function Dashboard() {
                 )}
             </div>
             
-            {/* Summary Statistics */}
             <h2>System Summary</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginTop: '20px' }}>
                 <div style={{ padding: '20px', backgroundColor: '#d4edda', borderRadius: '5px', textAlign: 'center' }}>

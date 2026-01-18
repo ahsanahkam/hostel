@@ -1,11 +1,3 @@
-/**
- * Toast Component - Reusable notification
- * =======================================
- * 
- * Shows success/error messages in top-right corner
- * Auto-dismisses after specified duration
- */
-
 import React from 'react';
 
 function Toast({ show, message, type = 'success' }) {

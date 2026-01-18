@@ -1,14 +1,3 @@
-/**
- * Main App Component
- * ==================
- * 
- * This is the root component that:
- * 1. Sets up routing for all pages
- * 2. Defines which URL shows which page
- * 
- * React Router handles navigation without page reload
- */
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import SignIn from './pages/SignIn';
@@ -25,15 +14,10 @@ function App() {
     return (
         <Router>
             <Routes>
-                {/* Default route - redirect to signin */}
                 <Route path="/" element={<Navigate to="/signin" />} />
-                
-                {/* Authentication pages */}
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
-                
-                {/* Main application pages (require login) */}
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/assets" element={<Assets />} />
                 <Route path="/rooms" element={<Rooms />} />

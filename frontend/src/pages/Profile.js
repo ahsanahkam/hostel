@@ -1,10 +1,3 @@
-/**
- * Profile Page
- * ============
- * 
- * Shows personal user information and allows updating phone number
- */
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCurrentUser, updateProfile } from '../services/api';
@@ -82,7 +75,6 @@ function Profile() {
                 </Button>
             </div>
             
-            {/* User Information */}
             <div style={{ marginBottom: '30px', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#f8f9fa' }}>
                 <h2>My Information</h2>
                 <p><strong>Username:</strong> {user?.username}</p>
@@ -101,7 +93,6 @@ function Profile() {
                 </div>
             </div>
             
-            {/* Update Profile Form - Only show when button is clicked */}
             {showUpdateForm && (
                 <div style={{ marginBottom: '30px', padding: '20px', border: '1px solid #ccc', borderRadius: '5px' }}>
                     <h3>Update Profile</h3>

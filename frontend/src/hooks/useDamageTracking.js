@@ -1,11 +1,3 @@
-/**
- * useDamageTracking Hook (Controller Layer)
- * ==========================================
- * 
- * Business logic for Damage Tracking
- * Handles: state management, API calls, form submission, status updates
- */
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getRooms, createDamageReport, getDamageReports, updateDamageReport, deleteDamageReport } from '../services/api';

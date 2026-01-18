@@ -1,12 +1,3 @@
-/**
- * Rooms Page (View Layer)
- * ========================
- * 
- * Pure View component for room management
- * Business logic handled by useRooms hook (Controller)
- * Data access handled by api.js (Model)
- */
-
 import React, { useState } from 'react';
 import { useRooms } from '../hooks/useRooms';
 import Toast from '../components/Toast';
@@ -16,7 +7,6 @@ import FormField from '../components/FormField';
 function Rooms() {
     const [toast, setToast] = useState({ show: false, message: '', type: '' });
     
-    // Controller layer - all business logic in custom hook
     const {
         rooms,
         loading,
@@ -32,7 +22,6 @@ function Rooms() {
         navigate
     } = useRooms();
     
-    // Toast notification helper
     const showToast = (message, type = 'success') => {
         setToast({ show: true, message, type });
         setTimeout(() => setToast({ show: false, message: '', type: '' }), 3000);
@@ -46,7 +35,6 @@ function Rooms() {
         <div style={{ padding: '20px' }}>
             <Toast show={toast.show} message={toast.message} type={toast.type} />
             
-            {/* Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                 <h1>Room Management</h1>
                 <div style={{ display: 'flex', gap: '10px' }}>
@@ -59,7 +47,6 @@ function Rooms() {
                 </div>
             </div>
             
-            {/* Add/Edit Form */}
             {showForm && (
                 <div style={{ marginBottom: '30px', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#f8f9fa' }}>
                     <h3>{editingRoom ? 'Edit Room' : 'Add New Room'}</h3>
@@ -110,7 +97,6 @@ function Rooms() {
                 </div>
             )}
             
-            {/* Rooms List */}
             <h2>All Rooms ({rooms.length})</h2>
             <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
                 <thead>

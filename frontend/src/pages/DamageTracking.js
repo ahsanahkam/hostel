@@ -1,12 +1,3 @@
-/**
- * Damage Tracking Page (View Layer - Warden Only)
- * ================================================
- * 
- * Pure View component for damage tracking
- * Business logic handled by useDamageTracking hook (Controller)
- * Data access handled by api.js (Model)
- */
-
 import React, { useState } from 'react';
 import { useDamageTracking } from '../hooks/useDamageTracking';
 import Toast from '../components/Toast';
@@ -16,7 +7,6 @@ import FormField from '../components/FormField';
 function DamageTracking() {
     const [toast, setToast] = useState({ show: false, message: '', type: '' });
     
-    // Controller layer - all business logic in custom hook
     const {
         rooms,
         damageReports,
@@ -34,12 +24,11 @@ function DamageTracking() {
         navigate
     } = useDamageTracking();
     
-    // Toast notification helper
     const showToast = (message, type = 'success') => {
         setToast({ show: true, message, type });
         setTimeout(() => setToast({ show: false, message: '', type: '' }), 3000);
     };
-    
+
     if (loading) {
         return <div style={{ padding: '20px' }}>Loading...</div>;
     }
@@ -48,7 +37,6 @@ function DamageTracking() {
         <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
             <Toast show={toast.show} message={toast.message} type={toast.type} />
             
-            {/* Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                 <h1>🔧 Damage Tracking</h1>
                 <Button variant="secondary" onClick={() => navigate('/dashboard')}>
@@ -56,7 +44,6 @@ function DamageTracking() {
                 </Button>
             </div>
             
-            {/* Add Damage Report Form */}
             <div style={{ backgroundColor: '#d4edda', padding: '20px', borderRadius: '5px', border: '2px solid #28a745', marginBottom: '30px' }}>
                 <h2 style={{ marginTop: 0 }}>Report New Damage</h2>
                 <form onSubmit={(e) => handleSubmit(e, showToast)}>
@@ -102,8 +89,7 @@ function DamageTracking() {
                 </form>
             </div>
             
-            {/* Damage Reports Summary */}
-            <div style={{ backgroundColor: '#f8f9fa', padding: '20px', borderRadius: '5px', border: '1px solid #ddd' }}>
+            <div style={{ backgroundColor: '#f8f9fa', padding: '20px', borderRadius: '5px', border: '1px solid #dee2e6' }}>
                 <h2 style={{ marginTop: 0 }}>Damage Reports Summary ({damageReports.length})</h2>
                 
                 {damageReports.length === 0 ? (

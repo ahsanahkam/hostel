@@ -1,14 +1,3 @@
-/**
- * User Management Page (Warden Only)
- * ===================================
- * 
- * Allows Warden to:
- * - View all users
- * - Create new users
- * - Change user roles via dropdown
- * - Delete users
- */
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCurrentUser, listUsers, updateUser, deleteUser, resetUserPassword } from '../services/api';
@@ -128,7 +117,6 @@ function UserManagement() {
                     <p style={{ margin: '5px 0 0 0', color: '#856404' }}>Approve pending users and assign roles</p>
                 </div>
                 
-                {/* All Users List */}
                 <h3 style={{ marginTop: '20px' }}>All Users</h3>
                 <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '15px', backgroundColor: '#ffffff' }}>
                     <thead>
@@ -199,7 +187,6 @@ function UserManagement() {
                 </table>
             </div>
             
-            {/* Reset Password Modal */}
             {resetPasswordUserId && (
                 <div style={{
                     position: 'fixed',

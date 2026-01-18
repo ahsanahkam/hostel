@@ -1,12 +1,3 @@
-/**
- * SignIn Page (View Layer)
- * =========================
- * 
- * Pure View component for user login
- * Business logic handled by useAuth hook (Controller)
- * Data access handled by api.js (Model)
- */
-
 import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import Toast from '../components/Toast';
@@ -18,10 +9,8 @@ function SignIn() {
     const [password, setPassword] = useState('');
     const [toast, setToast] = useState({ show: false, message: '' });
     
-    // Controller layer - all business logic in custom hook
     const { loading, error, handleLogin } = useAuth();
     
-    // Toast notification helper
     const showToast = (message, type = 'success') => {
         setToast({ show: true, message });
         setTimeout(() => {
@@ -29,12 +18,11 @@ function SignIn() {
         }, 1500);
     };
     
-    // Handle form submission
     const onSubmit = (e) => {
         e.preventDefault();
         handleLogin(username, password, showToast);
     };
-    
+
     return (
         <div style={{ maxWidth: '400px', margin: '50px auto', padding: '20px', border: '1px solid #ccc' }}>
             <Toast show={toast.show} message={toast.message} />

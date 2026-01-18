@@ -1,12 +1,3 @@
-/**
- * Assets Page (View Layer)
- * =========================
- * 
- * Pure View component for asset management
- * Business logic handled by useAssets hook (Controller)
- * Data access handled by api.js (Model)
- */
-
 import React, { useState } from 'react';
 import { useAssets } from '../hooks/useAssets';
 import Toast from '../components/Toast';
@@ -16,7 +7,6 @@ import FormField from '../components/FormField';
 function Assets() {
     const [toast, setToast] = useState({ show: false, message: '', type: '' });
     
-    // Controller layer - all business logic in custom hook
     const {
         assets,
         loading,
@@ -32,7 +22,6 @@ function Assets() {
         navigate
     } = useAssets();
     
-    // Toast notification helper
     const showToast = (message, type = 'success') => {
         setToast({ show: true, message, type });
         setTimeout(() => setToast({ show: false, message: '', type: '' }), 3000);
@@ -46,7 +35,6 @@ function Assets() {
         <div style={{ padding: '20px' }}>
             <Toast show={toast.show} message={toast.message} type={toast.type} />
             
-            {/* Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                 <h1>Asset Management</h1>
                 <div style={{ display: 'flex', gap: '10px' }}>
@@ -59,7 +47,6 @@ function Assets() {
                 </div>
             </div>
             
-            {/* Add/Edit Form */}
             {showForm && (
                 <div style={{ marginBottom: '30px', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#f8f9fa' }}>
                     <h3>{editingAsset ? 'Edit Asset' : 'Add New Asset'}</h3>
@@ -129,8 +116,6 @@ function Assets() {
                 </div>
             )}
             
-            {/* Assets List */}
-            <h2>All Assets ({assets.length})</h2>
             <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
                 <thead>
                     <tr style={{ backgroundColor: '#007bff', color: 'white' }}>

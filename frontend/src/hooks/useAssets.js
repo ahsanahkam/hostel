@@ -1,14 +1,3 @@
-/**
- * useAssets Hook (Controller Layer)
- * ==================================
- * 
- * Manages assets business logic:
- * - Fetching assets from API
- * - Creating, updating, deleting assets
- * - Form state management
- * - Loading and error states
- */
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAssets, createAsset, updateAsset, deleteAsset } from '../services/api';
@@ -28,7 +17,6 @@ export const useAssets = () => {
     
     const navigate = useNavigate();
     
-    // Fetch assets from API
     const fetchAssets = async (showToast) => {
         try {
             const response = await getAssets();
@@ -46,12 +34,10 @@ export const useAssets = () => {
         }
     };
     
-    // Load data on mount
     useEffect(() => {
         fetchAssets();
     }, []);
     
-    // Handle form field changes
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -59,7 +45,6 @@ export const useAssets = () => {
         });
     };
     
-    // Submit form (create or update)
     const handleSubmit = async (e, showToast) => {
         e.preventDefault();
         
@@ -72,7 +57,6 @@ export const useAssets = () => {
                 showToast('Asset created successfully!');
             }
             
-            // Reset form
             setShowForm(false);
             setEditingAsset(null);
             setFormData({
@@ -88,7 +72,6 @@ export const useAssets = () => {
         }
     };
     
-    // Start editing an asset
     const handleEdit = (asset) => {
         setEditingAsset(asset);
         setFormData({
@@ -101,7 +84,6 @@ export const useAssets = () => {
         setShowForm(true);
     };
     
-    // Delete an asset
     const handleDelete = async (id, showToast) => {
         if (window.confirm('Are you sure you want to delete this asset?')) {
             try {
@@ -114,7 +96,6 @@ export const useAssets = () => {
         }
     };
     
-    // Cancel form
     const handleCancel = () => {
         setShowForm(false);
         setEditingAsset(null);
@@ -128,14 +109,11 @@ export const useAssets = () => {
     };
     
     return {
-        // State
         assets,
         loading,
         showForm,
         editingAsset,
         formData,
-        
-        // Actions
         setShowForm,
         handleChange,
         handleSubmit,

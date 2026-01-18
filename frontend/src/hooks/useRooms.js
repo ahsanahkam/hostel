@@ -1,11 +1,3 @@
-/**
- * useRooms Hook (Controller Layer)
- * =================================
- * 
- * Business logic for Room management
- * Handles: state management, API calls, CRUD operations
- */
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getRooms, createRoom, updateRoom, deleteRoom } from '../services/api';
