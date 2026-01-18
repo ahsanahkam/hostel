@@ -1,0 +1,16 @@
+# Backend Requirements for Hostel Inventory System
+
+# Django Framework - The main web framework
+Django==4.2.7
+
+# Django REST Framework - For building REST APIs
+djangorestframework==3.14.0
+
+# MySQL Database Driver (using PyMySQL - pure Python, no compilation needed)
+pymysql==1.1.0
+
+# CORS Headers - Allows frontend to communicate with backend
+django-cors-headers==4.3.0
+
+# Simple JWT for authentication tokens (optional, keeping it simple)
+djangorestframework-simplejwt==5.3.0
